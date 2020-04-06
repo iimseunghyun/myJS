@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        var person = {name: "han", color:'blue'};
+        for (x in person) {
+            console.log(x); // name, color
+            console.log(name[x]); // han, blue  // name.x는 속성이 없기에 반환불가         
+        }
+        var person2 = ['han', 'blue'];
+        for (x of person2) { //of
+            console.log(x); //han, blue
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

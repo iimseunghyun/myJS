@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border: 2px solid #222;
+            border-collapse: collapse;
+        }
+        td {
+            border: 2px solid #ccc;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <table id = 'table_99'></table>
+    <script>
+        function mktable(tr,td){
+            var txt = "";
+            for(var i=0; i<tr; i++){
+                txt += '<tr>';
+                for(var j=0; j<td; j++){
+                    txt += '<td></td>';
+                }
+                txt += '</tr>';
+            }
+            return txt
+        }
+        document.getElementById('table_99').innerHTML = mktable(2,4)    // tr, td 입력 
+        var l = document.getElementsByTagName('td').length;
+        for (var i=0; i<l; i++) {
+            var txt2 = "";
+            for (var j=1; j<10; j++) {
+            txt2 += (i+2) + ' x ' + j + "=" + ((i+2)*j) + '<br>';
+            document.getElementsByTagName('td')[i].innerHTML= '<h4>' + (i+2)+ '단'+'</h4>'+ '<br>' + txt2;
+            }
+        }
+    </script>
+</body>
+</html>

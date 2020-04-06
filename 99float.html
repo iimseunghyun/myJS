@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            border: 1px solid lightgray;
+            float: left;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body id = 'body'>
+    <script>    
+        function mkdiv(dvs,tag){
+            var txt = '';
+            for (var i=0; i<dvs; i++){
+            txt += tag;
+            }
+            return txt; 
+        }
+        document.getElementById("body").innerHTML = mkdiv(9, '<div></div>') // tag갯수 , set of tag
+
+        var l = document.getElementsByTagName('div').length;
+        for (var i=0; i<l; i++) {
+            var txt2 = "";
+            for (var j=1; j<10; j++) {
+            txt2 += (i+2) + ' x ' + j + "=" + ((i+2)*j) + '<br>';
+            document.getElementsByTagName('div')[i].innerHTML= '<h4>' + (i+2)+ '단'+'</h4>'+ '<br>' + txt2;
+            }
+        }
+    </script>
+</body>
+</html>

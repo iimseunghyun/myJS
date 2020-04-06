@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <script> //me
+        var arr = [5, 7, 1, 9, 45, 29];
+        var x = arr[0]
+        var i;
+        for(i of arr) {
+            if(i>x){x = i}           
+        }
+            console.log(x) 
+
+
+    </script>
+</head>
+<body>
+    <div>
+        <h1>최대값 찾기</h1>
+        <p>주어진 수에서 최댓값을 찾는다.</p>
+        <p>주어진 수는 "35,5,23,78,1,23,98"</p>
+        <p>최대값은 <span id = "max_num_id"></span></p>
+
+    </div>
+    <script> //teacher
+        var arr = [35,5,23,78,1,23,98];
+        var max_num =arr[0];
+        var el = document.getElementsByID('max_num_id');
+        for (var i = 0; i <arr.length; i++){
+            console.log(i,arr[i]);
+            if(max_num < arr[i]) {max_num = arr[i];}
+        }
+        el.innerText = max_num;
+    </script>
+</body>
+</html>

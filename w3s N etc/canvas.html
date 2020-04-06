@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas { 
+            border:1px solid#000000;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="200" height="100"></canvas>
+    <img src="./tiger.jpg" alt="">
+    <script>
+        var canvas = document.querySelector('canvas');  //선택자를 통해 요소 가져옴.
+        var ctx = canvas.getContext('2d'); //그림을 그릴수있는 메서드를 가진 객체가 된다. 
+        // //박스
+        // ctx.fillStyle = '#ff0000';               //document.queryselector('canvas').getContext('2d').fillstyle
+        // ctx.fillRect(0,0,150,75);
+        // //사선
+        // ctx.moveTo(0,0);
+        // ctx.lineTo(200,100);
+        // ctx.stroke();
+        // //원
+        // ctx.beginPath();
+        // ctx.arc(95,50,40,0,2*Math.PI); //(중심의 x좌표, y좌표,반지름,시작각,end각(시계방향))    
+        // ctx.stroke();
+        // //텍스트
+        // ctx.font = '16px D2Coding';
+        // ctx.fillStyle = "f000000";
+        // ctx.textAlign = 'center';
+        // ctx.fillText('Hello', canvas.width/2, canvas.height/2); //(x좌표, y좌표)
+        var img = document.querySelector('img');
+        ctx.drawImage(img,0,0);
+
+            //canvas js로 생성
+        var canvas = document.createElement('canvas');  
+        // var content = document.createTextNode('hi');
+        // canvas.appendChild(content);
+        var body = document.querySelector('body');
+        body.appendChild(canvas);
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+    <div>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <button onclick ="getText()">입력</button>
+    </div>
+    <div>
+        <label for="word">단어:</label>
+        <input type="text" id = "word">
+        <button onclick = "returnword()">찾기</button>
+    </div>
+    <div>총 <span id = ""></span>개가 있습니다.</div>
+
+    <script>
+        function getText(){
+            source = document.getElementsByTagName("textarea")[0].value;};  //TagName은 배열로 반환하기 때문에 인덱스번호 필요  //입력받은 값을 가져올땐 inner~~가 아닌 value.(input or textarea)       
+        function returnword(){
+            target = document.getElementById("word").value;
+            targetIndex = source.indexOf(target);
+            console.log(targetIndex);
+        };
+    </script>
+</body>
+
+</html>

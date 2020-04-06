@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button onclick = "onButton('1')" id = "1">1</button>
+        <button onclick = "onButton('2')" id = "2">2</button>
+        <button onclick = "onButton('3')" id = "3">3</button>
+        <button onclick = "onButton('4')" id = "4">4</button>
+        <button onclick = "onButton('5')" id = "5">5</button><br>
+        <button onclick = "onButton('6')" id = "6">6</button>
+        <button onclick = "onButton('7')" id = "7">7</button>
+        <button onclick = "onButton('8')" id = "8">8</button>
+        <button onclick = "onButton('9')" id = "9">9</button>
+        <button onclick = "onButton('0')" id = "0">0</button>
+    </div>
+    <div>
+        <button onclick = "onButton2()" id = "+">+</button>
+        <button onclick = "onButton(-)" id = "-">-</button>
+        <button onclick = "onButton(*)" id = "*">*</button>
+        <button onclick = "onButton(/)" id = "/">/</button>
+        <button onclick = "onButton6()" id = "=">=</button>
+        <button onclick = "" id = "AC">AC</button>
+    </div>
+    <div id = "screen"></div>
+    <div id = "result"></div>
+    <script>
+        var a = ''
+        var nums = []
+        var ops = []
+        function onButton(number){
+            a += number;
+            document.getElementById('screen').innerHTML = a;
+            n = parseInt(a)
+            return console.log(n)
+        }
+        function onButton2(){
+            a = '';
+            nums.push(n);
+            ops.push('+');
+            console.log(nums);
+            console.log(ops);
+        };
+        function onButton6(){
+            a='';
+            nums.push(n);
+            if(ops[0]==='+')
+            {console.log(nums[0] + nums[1])};
+        };
+    </script>
+</body>
+</html>

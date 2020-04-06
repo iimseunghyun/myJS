@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <button type = "button" onclick= "start()">실행</button>
+    <label for="min_id">최소 숫자</label>
+    <input type="text" name="" id="min_id">
+    <label for="max_id">최대 숫자</label>
+    <input type="text" name="" id="max_id">
+    <label for="len_id">난수 개수</label>
+    <input type="text" name="" id="len_id">
+
+    <table>
+        <tr>
+            <td id = "sameNums_id"></td>
+        </tr>
+        <tr>
+            <td id = "source_id"></td>
+        </tr>
+    </table>
+<script>
+    // min부터 max까지 랜덤숫자를 반환하는 함수
+    function getRandom(min, max) {
+        return parseInt((Math.random()*(max-min+1)+min));
+    }
+    //console.log(getRandom(1,3));
+    // n개의 임의의 수를 가지는 목록(Array) 생성
+    function makeRandomNumber(len,min,max) {
+        var rand_arr, rand, i;
+        // 임의의 수를 만들고 배열에 추가한다.
+        rand_arr = [];
+        for (i=0; i<len; i++) {
+            rand = getRandom(min,max)
+            rand_arr.push(rand);
+        }
+        return rand_arr;
+    }
+    // 하나 이상을 포함하는 숫자는?
+    // 주어진 배열에서 지정된 숫자는 몇 개를 포함하는가는 찾는 함수.
+    function findSameNum(n,arr) {
+        var count = 0;
+        for(var i of arr) {
+            if(n === i) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // 스크립트 실행하기
+    function start(){
+    var source_arr, sameNums;
+    var min, max, len;
+    source_arr = [];
+    sameNums = [];
+
+    min = parseInt(document.getElementById("min_id").value);
+    max = parseInt(document.getElementById("max_id").value);
+    len = parseInt(document.getElementById("len_id").value);
+    source_arr = makeRandomNumber(len,min,max);
+
+    for(var i of source_arr) {
+        if(findSameNum(i,source_arr) > 1 && findSameNum(i, sameNums) < 1) {
+            sameNums.push(i);
+        }
+    }
+
+    document.getElementById('source_id').innerHTML = "난수배열:"+ source_arr;
+    document.getElementById('sameNums_id').innerHTML ="중복된 숫자:" + sameNums;
+    }
+</script>    
+</body>
+</html>

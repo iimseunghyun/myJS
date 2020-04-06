@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id = "demo"></div>
+    <script>
+        var fruits, i , text ;
+        var fruits = ['banana', 'orange', 'apple', 'mango'];
+        text = "<ul>";
+        for(i of fruits){
+            text += "<li>" + i + "</li>";
+        }
+        text += "</ul>";
+        
+        document.getElementById("demo").innerHTML = text;
+
+
+    </script>
+    
+</body>
+</html>

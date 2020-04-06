@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        var box = [1,2,4,6,7,9];
+        var txt = ""; //literal
+        // var i=0;
+        //for(초기값(한번만 실행);조건;증감(i++ 는 i=i+1)){} // scope를 가지지 않는다. 
+        for(i=0 ;i<5; i++){
+            // i++;
+            name = 'ho';
+            console.log(txt += i);
+        }
+        function myFn() {
+            for (var i = 0; i<5; i++){
+                name = 'ha'; //global
+                var name = 'hi'; //local, (while function executed)
+                console.log(txt += i);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

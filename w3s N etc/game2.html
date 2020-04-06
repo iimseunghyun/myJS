@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
+</head>
+<body onload="startGame()">
+<script>
+
+var myGamePiece;
+var myObstacles = [];
+var cnt = 0;
+
+function startGame() {
+    myGameArea.start();
+    myGamePiece = new component(30, 30, "red", 750, 0);
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 800;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 5);
+        window.addEventListener('keydown', function (e) {
+            myGameArea.key = e.keyCode;
+        })
+        window.addEventListener('keyup', function (e) {
+            myGameArea.key = false;
+        })
+    }, 
+    clear : function(){
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    stop : function() {
+        clearInterval(this.interval);
+    }
+}
+
+function everyinterval(n){
+    if ((myGameArea.frameNo / n) % 1 == 0){return true;}
+    return false;
+}
+
+function component(width, height, color, x, y) {
+    this.gamearea = myGameArea;
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;
+    this.gravity = 3.5;
+    this.gravitySpeed = 0;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.newPos = function() {
+        this.gravitySpeed += this.gravity;
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravitySpeed;
+    }
+
+    this.siton = function(otherobj){    
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var sit = true;
+        if ((mybottom < othertop) ||
+            (mytop > otherbottom) ||
+            (myright < otherleft) ||
+            (myleft > otherright)) {
+            sit = false;
+        }
+        return sit;    
+    }
+    this.falled = function() {
+        var mybottom = this.y + (this.height);
+        var falling = true;
+        if (mybottom < myGameArea.canvas.height){
+            falling = false;
+        }
+        return falling;
+    }
+}
+
+function updateGameArea() {
+    // console.log(cnt++);
+    var x, y, width, minWidth, maxWidth;
+    if (myGamePiece.falled()){
+        myGameArea.stop();
+        return;
+    }
+    myGameArea.clear();
+    myGameArea.frameNo += 1;
+    if (myGameArea.frameNo == 1 || everyinterval(200)){
+        x = myGameArea.canvas.width;
+        minWidth =30
+        maxWidth =150
+        width = Math.floor(Math.random()*(maxWidth-minWidth+1) + minWidth);
+        y = myGameArea.canvas.height - 100;
+        myObstacles.push(new component(width, 10, 'green', x, y));
+    }
+    for (i = 0; i < myObstacles.length; i += 1){
+        myObstacles[i].x += -1;
+        myObstacles[i].update();
+        if (myObstacles[i].x+width < 0) {myObstacles.shift(myObstacles[i])}
+    }
+
+    myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0;
+    myGamePiece.gravitySpeed = 0;
+    if (myGameArea.key && myGameArea.key == 37) {myGamePiece.speedX = -1; }
+    if (myGameArea.key && myGameArea.key == 39) {myGamePiece.speedX = 1; }
+    if (myGameArea.key && myGameArea.key == 38) {myGamePiece.speedY = -1; }
+    if (myGameArea.key && myGameArea.key == 40) {myGamePiece.speedY = 1; }
+    if (myGameArea.key && myGameArea.key == 32) {myGamePiece.gravitySpeed = -7; myGamePiece.speedX = 3;}
+
+    for (i = 0; i < myObstacles.length; i += 1) {
+        if (myGamePiece.siton(myObstacles[i])) {
+            myGamePiece.y = myObstacles[i].y - (myGamePiece.height);
+            myGamePiece.x = myObstacles[i].x + (myGamePiece.x - myObstacles[i].x);
+            myGamePiece.x += -1
+            //myGamePiece.x = myObstacles[i].x;    
+        }
+    }
+    myGamePiece.newPos();
+    myGamePiece.update();
+}
+</script>
+
+</body>
+</html>
